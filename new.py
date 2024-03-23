@@ -5,18 +5,26 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from PIL import Image
+
+
+
+
 
 # Load the preprocessed dataset
-@st.cache
+@st.cache_data #@st.cache
 def load_data():
     # Load your preprocessed dataset here
-    # For example:
-    data = pd.read_csv('datatry3.csv')
+    data = pd.read_csv('dataset.csv')
     return data
 
 # Sidebar - Input parameters
+import streamlit as st
+
+
+# Call  Failure,Complains,Subscription  Length,Charge  Amount,Seconds of Use,Frequency of use,Frequency of SMS,Distinct Called Numbers,Age Group,Tariff Plan,
+# Status,Age,Customer Value,FN,FP,Churn
 def user_input():
-    plt.show()
     # contract = st.sidebar.selectbox('Contract Type', ['Month-to-month', 'One year', 'Two year'])
     # internet_service = st.sidebar.selectbox('Internet Service', ['DSL', 'Fiber optic', 'No'])
     # monthly_charges = st.sidebar.slider('Monthly Charges', 18.25, 118.75, 50.00)
@@ -43,23 +51,27 @@ def user_input():
         # 'InternetService': internet_service,
         # 'MonthlyCharges': monthly_charges,
         # 'TotalCharges': total_charges,
-        'call_failure': call_failure,
+        'call failure': call_failure,
         'complains': complains,
-        'subscription_length': subscription_length,
-        'charge_amount': charge_amount,
-        'seconds_of_use': seconds_of_use,
-        'frequency_of_use': frequency_of_use,
-        'frequency_of_sms': frequency_of_sms,
-        'distinct_called_numbers': distinct_called_numbers,
-        'age_group': age_group,
-        'tariff_plan': tariff_plan,
+        'subscription length': subscription_length,
+        'charge amount': charge_amount,
+        'seconds of use': seconds_of_use,
+        'frequency of use': frequency_of_use,
+        'frequency of sms': frequency_of_sms,
+        'distinct called numbers': distinct_called_numbers,
+        'age group': age_group,
+        'tariff plan': tariff_plan,
         'status': status,
         'age': age,
-        'customer_value': customer_value,
+        'customer value': customer_value,
         'FN': FN,
         'FP': FP,
         'Churn': Churn
     }
+    
+    # return input_data
+
+
     return pd.DataFrame([input_data])
 
 # Main function
@@ -87,21 +99,38 @@ def main():
     # Preprocess input data
     # For example: Encoding categorical variables, scaling numerical features
 
-    # Train model
+    
+    # y = data['Churn']
+   # Train model
+    
+        # Train model
     X = data.drop('Churn', axis=1)
-    y = data('Churn')
-    model = RandomForestClassifier()
-    model.fit(X, y)
+    y = data['Churn']
+    
+    # img add of graph
+    # st.image('D:\SPIT-Techsparker - 2\image1.png', caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+    # else:
+    try:
+        X = data.drop('Churn', axis=1)
+        model = RandomForestClassifier()
+        model.fit(X, y)
+    except KeyError:
+        st.error("The 'Churn' column is missing in the dataset. Please ensure that it is present.")
 
-    # Make predictions
+    # # Make predictions
     prediction = model.predict(input_df)
 
-    # Display prediction
+    # # Display prediction
     st.subheader('Prediction')
     if prediction[0] == 0:
         st.write('The customer is not likely to Churn.')
     else:
         st.write('The customer is likely to Churn.')
+st.image('D:\SPIT-Techsparker - 2\image1.jpg')
+try:
+    if __name__ == '__main__':
+        main()
+except:
+    print("could not load file")
 
-if __name__ == '__main__':
-    main()
+
