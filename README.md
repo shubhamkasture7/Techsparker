@@ -56,7 +56,7 @@ Customer churn refers to the percentage of customers who stop using a company's 
 
 ### ⚡ One-Command Setup
 ```bash
-git clone https://github.com/yourusername/telecom-churn-prediction.git
+git clone https://github.com/shubhamkasture7/Telecommunications-Customer-Churn-Prediction.git
 cd telecom-churn-prediction
 pip install -r requirements.txt
 streamlit run app.py
@@ -68,8 +68,8 @@ streamlit run app.py
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/telecom-churn-prediction.git
-cd telecom-churn-prediction
+git clone https://github.com/shubhamkasture7/Telecommunications-Customer-Churn-Prediction.git
+cd Telecommunications-Customer-Churn-Prediction
 ```
 
 ### 2️⃣ Create Virtual Environment (Recommended)
